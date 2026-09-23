@@ -9,3 +9,6 @@ class Structs:
             body_count = len(data["bodies"])
             hashmap = Hashmap(body_count)
             for body in data["bodies"]:
+                if body["englishName"]:
+                    hashmap.insert(body["englishName"], body)
+            return hashmap

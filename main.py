@@ -1,10 +1,11 @@
 from classes import API, Structs
 
-# Variaveis de ambiente
+# Variáveis de ambiente
 RETRIEVE_FROM_API = False
 # -----------------------------------------------------------------------------
 
 if RETRIEVE_FROM_API:
     API.get_data()
 
-hm = Structs.hashmap_by_discovery_year()
+hashmap_bodyname = Structs.hashmap_by_bodyname()
+hashmap_bodyname.debug(True)
