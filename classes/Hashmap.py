@@ -1,9 +1,11 @@
+# Classe que contém uma chave e um valor para ser armazenado no Hashmap
 class Node:
-    def __init__(self, key, value, next=None):
+    def __init__(self, key, value, next):
         self.key = key
         self.value = value
         self.next = next
 
+# Classe Hashmap
 class Hashmap:
     def __init__(self, expected_key_amount):
         self.log = []
@@ -15,13 +17,13 @@ class Hashmap:
         self.size = 0
         self.collision_count = 0
 
-    # Mostra as informacoes do hashmap
+    # Mostra as informações do Hashmap
     def debug(self, show_logs=True):
         if show_logs:
-            print("Logs do hashmap:")
+            print("Logs do Hashmap:")
             for log in self.log:
                 print(log)
-        print("--- Informações do hashmap ---")
+        print("--- Informações do Hashmap ---")
         print(f"Total de chaves armazenadas: {self.size}")
         print(f"Total de chunks na tabela: {self.capacity}")
         print(f"Total de chunks utilizados: {self.used_chunk_count}")
@@ -32,12 +34,12 @@ class Hashmap:
     def __hash(self, key):
         return hash(key) % self.capacity
 
-    # Registra uma operação efetuada no hashmap
+    # Registra uma operação efetuada no Hashmap
     def __register_log(self, text):
         log = f"Log {len(self.log) + 1}: {text}"
         self.log.append(log)
 
-    # Retorna o valor contido em uma chave do hashmap (ou None, se a chave não existir)
+    # Retorna o valor contido em uma chave do Hashmap (ou None, se a chave não existir)
     def get(self, key):
         chunk = self.__hash(key)
         node = self.table[chunk]
@@ -49,7 +51,7 @@ class Hashmap:
         self.__register_log(f"Busca: Nao encontrou a chave '{key}' no chunk {chunk}.")
         return None
 
-    # Insere uma chave no hashmap (ou altera seu valor, se a chave já existir)
+    # Insere uma chave no Hashmap (ou altera seu valor, se a chave já existir)
     def insert(self, key, value):
         chunk = self.__hash(key)
         node = self.table[chunk]
@@ -74,7 +76,7 @@ class Hashmap:
             self.used_chunk[chunk] = True
             self.__register_log(f"Inserção: Nao encontrou a chave '{key}' no chunk {chunk} e criou a chave.")
 
-    # Deleta uma chave do hashmap, se a mesma existir
+    # Deleta uma chave do Hashmap, se a mesma existir
     def delete(self, key):
         chunk = self.__hash(key)
         node = self.table[chunk]

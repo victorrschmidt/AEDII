@@ -2,10 +2,12 @@ import json
 from urllib.request import Request, urlopen
 
 class API:
+    # Informações da API
     URL = "https://api.le-systeme-solaire.net/rest/bodies"
     API_KEY = "c2245b58-5114-48e5-87a7-22d6bf6f25a5"
     HEADERS = {"Authorization": f"Bearer {API_KEY}"}
 
+    # Resgata os dados da API
     @staticmethod
     def get_data():
         request = Request(API.URL, headers=API.HEADERS)
