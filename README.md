@@ -1,7 +1,27 @@
 # Trabalho de Algoritmos e Estruturas de Dados II
 
 ## Autor
-Victor Rodrigues Schmidt
+Victor Rodrigues Schmidt.
+
+## Utilização
+É necessário possuir o Python 3.11 ou superior.
+
+### Instale o projeto
+```cmd
+git clone https://github.com/victorrschmidt/AEDII.git
+```
+
+### Executar
+
+#### Windows
+```cmd
+py main.py
+```
+
+#### Linux
+```cmd
+python3 main.py
+```
 
 ## Resumo
 Este repósitorio tem como objetivo armazenar os arquivos do trabalho de
@@ -12,7 +32,7 @@ presentes em uma API, e insere os dados em estruturas de Hashmap e Trie.
 Os atributos relevantes de cada planeta, que são considerados na hora do
 armazenamento são:
 
-- id
+- ID
 - Nome
 - Massa
 - Volume

@@ -9,6 +9,7 @@ class Node:
         # 26 letras + 10 algarismos + hífen
         self.children = [None] * 37
         self.children_count = 0
+
 # Classe Trie
 class Trie:
     def __init__(self):

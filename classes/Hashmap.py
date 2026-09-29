@@ -4,29 +4,30 @@ from typing import Self
 class Body:
     def __init__(self, value: dict):
         self.id = value["id"]
-        self.name = value["englishName"]
+        self.name = value["englishName"] if value["englishName"] else None
         self.is_planet = value["isPlanet"]
-        if value["mass"]:
-            self.mass = value["mass"]["massValue"] * (10 ** value["mass"]["massExponent"])
-        else:
-            self.mass = None
-        if value["vol"]:
-            self.volume = value["vol"]["volValue"] * (10 ** value["vol"]["volExponent"])
-        else:
-            self.volume = None
+        self.mass = value["mass"]["massValue"] * (10 ** value["mass"]["massExponent"]) if value["mass"] else None
+        self.volume = value["vol"]["volValue"] * (10 ** value["vol"]["volExponent"]) if value["vol"] else None
         self.density = value["density"]
         self.gravity = value["gravity"]
         self.radius = value["meanRadius"]
         self.average_temperature = value["avgTemp"]
-        self.type = value["bodyType"]
+        self.type = {
+            "Star": "Estrela",
+            "Planet": "Planeta",
+            "Dwarf Planet": "Planeta Anão",
+            "Asteroid": "Asteroide",
+            "Comet": "Cometa",
+            "Moon": "Lua"
+        }[value["bodyType"]]
 
     # Mostra as informações do corpo celeste
     def debug(self) -> None:
         print(f"ID: {self.id}")
-        print(f"Nome: {self.name}")
+        print(f"Nome: {self.name if self.name is not None else 'não especificado'}")
         print(f"É um planeta: {'sim' if self.is_planet else 'não'}")
-        print(f"Massa: {f"{self.mass} kg" if self.mass is not None else 'desconhecida'}")
-        print(f"Volume: {f"{self.volume} km³" if self.volume is not None else 'desconhecido'}")
+        print(f"Massa: {str(self.mass) + ' kg' if self.mass is not None else 'desconhecida'}")
+        print(f"Volume: {str(self.volume) + ' km³' if self.volume is not None else 'desconhecido'}")
         print(f"Densidade: {self.density} g/cm³")
         print(f"Gravidade: {self.gravity} m/s²")
         print(f"Raio médio: {self.radius} km")
@@ -113,7 +114,6 @@ class Hashmap:
     # Redistribui as chaves para uma tabela maior
     def __rehash(self) -> None:
         self.capacity *= 2
-        self.__register_log(f"Aplicou rehashing na tabela. Nova capacidade: {self.capacity}")
         self.used_chunk = [False] * self.capacity
         self.used_chunk_count = 0
         new_table = [None] * self.capacity
@@ -122,6 +122,7 @@ class Hashmap:
                 self.__insert(new_table, old_node)
                 old_node = old_node.next
         self.table = new_table
+        self.__register_log(f"Aplicou rehashing na tabela. Nova capacidade: {self.capacity}")
 
     # Retorna o corpo celeste contido em uma chave do Hashmap (ou None, se a chave não existir)
     def get(self, key: str) -> Body:
