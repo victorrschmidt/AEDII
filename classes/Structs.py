@@ -1,4 +1,5 @@
 from .Searcher import Searcher
+from .Huffman import Huffman
 import json
 
 # Classe Structs
@@ -14,3 +15,11 @@ class Structs:
                 if body["id"].lower():
                     searcher.insert(body["id"].lower(), body)
             return searcher
+
+    # Retorna um Huffman com os dados da API
+    @staticmethod
+    def huffman() -> Huffman:
+        with open("bodies.json", "r", encoding="utf-8") as file:
+            text = file.read()
+            huffman = Huffman(text)
+            return huffman

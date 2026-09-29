@@ -3,26 +3,6 @@
 ## Autor
 Victor Rodrigues Schmidt.
 
-## Utilização
-É necessário possuir o Python 3.11 ou superior.
-
-### Instale o projeto
-```cmd
-git clone https://github.com/victorrschmidt/AEDII.git
-```
-
-### Executar
-
-#### Windows
-```cmd
-py main.py
-```
-
-#### Linux
-```cmd
-python3 main.py
-```
-
 ## Resumo
 Este repósitorio tem como objetivo armazenar os arquivos do trabalho de
 Algoritmos e Estruturas de Dados II. O programa extrai dados de corpos celestes
@@ -108,4 +88,48 @@ presentes na base de dados. Exemplo de um corpo celeste:
     "bodyType": "Moon",
     "rel": "https://api.le-systeme-solaire.net/rest/bodies/skathi"
 }
+```
+
+## Utilização
+É necessário possuir o Python 3.11 ou superior.
+
+### Instale o projeto
+```cmd
+git clone https://github.com/victorrschmidt/AEDII.git
+```
+
+### Executar
+
+#### Chamada da API
+Para fazer a chamada da API durante a execução, mude a variável:
+```python
+RETRIEVE_FROM_API = False
+```
+
+para
+
+```python
+RETRIEVE_FROM_API = True
+```
+
+#### Codificação da API
+Para fazer a codificação dos dados da API, mude a variável:
+```python
+APPLY_HUFFMAN = False
+```
+
+para
+
+```python
+APPLY_HUFFMAN = True
+```
+
+#### Executar no Windows
+```cmd
+py main.py
+```
+
+#### Executar no Linux
+```cmd
+python3 main.py
 ```
