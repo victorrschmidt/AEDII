@@ -1,6 +1,7 @@
 import json
 from urllib.request import Request, urlopen
 
+# Classe API
 class API:
     # Informações da API
     URL = "https://api.le-systeme-solaire.net/rest/bodies"
@@ -9,13 +10,11 @@ class API:
 
     # Resgata os dados da API
     @staticmethod
-    def get_data():
+    def get_data() -> None:
         request = Request(API.URL, headers=API.HEADERS)
-
         with urlopen(request) as response:
             if response.status != 200:
                 raise Exception(f"Erro na API. Status: {response.status}")
             data = json.load(response)
-
         with open("bodies.json", "w", encoding="utf-8") as file:
             json.dump(data, file, indent=4, ensure_ascii=False)

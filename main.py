@@ -9,4 +9,5 @@ RETRIEVE_FROM_API = False
 if RETRIEVE_FROM_API:
     API.get_data()
 
-hashmap_bodyname = Structs.hashmap_by_bodyname()
+searcher = Structs.searcher()
+searcher.run()
